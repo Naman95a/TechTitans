@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 1: The Journey for Water</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #2c3e50; /* Dark night sky */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            position: relative;
+            color: white;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        /* Glowing moon */
+        .moon {
+            position: absolute;
+            top: 5%;
+            right: 5%;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, #f0e68c, #fff);
+            border-radius: 50%;
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.8);
+            filter: blur(5px);
+            animation: glow 3s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 50px rgba(255, 255, 255, 0.8); }
+            100% { box-shadow: 0 0 100px rgba(255, 255, 255, 1); }
+        }
+
+        /* Flying Crow Animation */
+        .crow {
+            position: absolute;
+            top: 30%;
+            left: -200px;
+            width: 400px; /* Adjust crow size */
+            animation: flyAcross 15s linear infinite;
+        }
+
+        @keyframes flyAcross {
+            0% { left: -200px; }
+            100% { left: 100%; }
+        }
+
+        /* House Image */
+        .house {
+            position: absolute;
+            bottom: 30px;
+            left: 5%;
+            width: 400px; /* Adjust size of the house */
+            height: auto;
+            z-index: 1;
+        }
+
+        /* Land styles */
+        .land {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to top, #34495e, #2c3e50);
+            z-index: -1;
+        }
+
+        /* Stars */
+        .star {
+            position: absolute;
+            background: white;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            animation: twinkle 1.5s infinite alternate, glow 1.5s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
+            100% { box-shadow: 0 0 15px rgba(255, 255, 255, 1); }
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        /* Title Styling */
+        .title {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+            z-index: 10;
+            opacity: 0;
+            animation: fadeInTitle 2s forwards;
+        }
+
+        /* Fade-in effect for Title */
+        @keyframes fadeInTitle {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .title h1 {
+            font-size: 60px;
+            font-weight: bold;
+            margin: 0;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+            letter-spacing: 3px;
+            animation: bounceIn 1.5s ease-out forwards;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            60% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        .description {
+            font-size: 18px;
+            margin-top: 20px;
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
+            color: #BDC3C7;
+            opacity: 0;
+            animation: fadeInDescription 2s 1s forwards;
+        }
+
+        /* Fade-in effect for Description */
+        @keyframes fadeInDescription {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Play Button Styling */
+        .play-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 18px 35px;
+            font-size: 22px;
+            background: linear-gradient(45deg, #1abc9c, #16a085);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeInButton 2s 1.5s forwards;
+        }
+
+        /* Fade-in effect for Button */
+        @keyframes fadeInButton {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            background: linear-gradient(45deg, #16a085, #1abc9c);
+        }
+
+        .play-button:focus {
+            outline: none;
+        }
+
+        /* Animation for stars */
+        .star {
+            animation: starTwinkle 3s infinite ease-in-out;
+        }
+
+        @keyframes starTwinkle {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Glowing Moon -->
+    <div class="moon"></div>
+
+    <!-- Flying Crow GIF -->
+    <img src="https://i.pinimg.com/originals/cf/93/15/cf9315aa87f6b20272b05b7ec3059918.gif" alt="Flying Crow" class="crow"> <!-- Replace with your flying crow gif -->
+
+    <!-- House PNG -->
+    <img src="house.png" alt="House" class="house"> <!-- Replace with your house image path -->
+
+    <!-- Land -->
+    <div class="land"></div>
+
+    <!-- Title -->
+    <div class="title">
+        <h1>Chapter 1: The Journey for Water</h1>
+        <p class="description">The story begins on a hot, dry day. A crow, parched from the scorching heat, searches desperately for water. After flying across vast stretches of land, the crow grows tired and disheartened. It continues its journey, determined not to give up.</p>
+    </div>
+
+    <!-- Play Button -->
+    <a href="next-chapter.html">
+        <button class="play-button">Continue</button>
+    </a>
+
+    <!-- Stars -->
+    <div id="stars"></div>
+
+    <script>
+        // Generate stars
+        function createStars() {
+            const starContainer = document.getElementById('stars');
+            for (let i = 0; i < 200; i++) {
+                let star = document.createElement('div');
+                star.classList.add('star');
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDuration = `${Math.random() * 2 + 2}s`;
+                star.style.animationDelay = `${Math.random() * 2}s`;
+                starContainer.appendChild(star);
+            }
+        }
+
+        createStars();
+    </script>
+</body>
+</html>

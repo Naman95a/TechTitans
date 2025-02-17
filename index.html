@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day Sky with 3D Grass, Sun, Realistic Clouds, and a House</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: radial-gradient(circle, #87CEEB, #4682B4);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            position: relative;
+        }
+
+        .sun {
+            position: absolute;
+            top: 5%;
+            right: 5%;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, #FFD700, #FFA500);
+            border-radius: 50%;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.8);
+            transition: filter 0.5s;
+        }
+
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.9;
+            filter: blur(8px);
+            animation: float 20s infinite linear;
+            box-shadow: 10px 10px 20px rgba(200, 200, 200, 0.5);
+        }
+
+        .cloud::before, .cloud::after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 10px 10px 15px rgba(180, 180, 180, 0.5);
+        }
+
+        .cloud::before {
+            width: 80%;
+            height: 80%;
+            top: -50%;
+            left: 10%;
+        }
+
+        .cloud::after {
+            width: 100%;
+            height: 100%;
+            top: -40%;
+            left: 30%;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100vw); }
+        }
+
+        /* Land styles */
+        .land {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to top, #3e8e41, #2e6a2e);
+            z-index: -1;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .grass-container {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 150px;
+            display: flex;
+            justify-content: space-evenly;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .blade {
+            position: absolute;
+            bottom: 0;
+            width: 4px;
+            height: 50px;
+            background: linear-gradient(to top, #0a5c0a, #3ea93e);
+            border-radius: 50% 50% 0 0;
+            animation: sway 2s infinite ease-in-out alternate;
+            transform-origin: bottom center;
+        }
+
+        @keyframes sway {
+            0% { transform: rotate(-5deg); }
+            100% { transform: rotate(5deg); }
+        }
+
+        /* House and Pot images */
+        .house {
+            position: absolute;
+            bottom: 10px;
+            left: 1%;
+            width: 500px; /* Adjust the size of the house image */
+            height: auto;
+            z-index: 1;
+        }
+
+        .pot {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px; /* Adjust the size of the pot image */
+            height: auto;
+        }
+
+        /* Tree GIF */
+        .tree {
+            position: absolute;
+            bottom: 10%;
+            right: 5%; /* Adjust position to the right */
+            width: 450px; /* Set the size of the tree */
+            height: auto;
+            z-index: 1;
+        }
+
+        /* Centered Title and Play Button */
+        .center-content {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+            z-index: 10;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Title with elegant design */
+        .center-content h1 {
+            font-size: 72px;
+            font-family: 'Helvetica Neue', sans-serif;
+            margin: 0;
+            font-weight: 900;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #ff9a9e);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: gradientMove 3s ease infinite;
+            letter-spacing: 3px;
+            line-height: 1.2;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Play button with sleek design */
+        .play-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 18px 35px;
+            font-size: 22px;
+            background: linear-gradient(45deg, #FF7F50, #FF6347);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            letter-spacing: 2px;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            background: linear-gradient(45deg, #FF6347, #FF4500);
+        }
+
+        .play-button:focus {
+            outline: none;
+        }
+
+        /* Smooth fade-in for the text */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="sun" id="sun"></div>
+    <div class="land"></div>
+    <div class="grass-container" id="grass"></div>
+
+    <!-- House PNG -->
+    <img src="house.png" alt="House" class="house"> <!-- Update with your house image path -->
+
+    <!-- Pot PNG -->
+    <img src="pot.png" alt="Pot" class="pot"> <!-- Update with your pot image path -->
+
+    <!-- Tree GIF -->
+    <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGQxNWdnN2oxdnZmYTcwcGwzb3FlcjZyd2ozOWRocjV4YjEybTU4dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/Me15dPbub4gXFVlrky/giphy.gif" alt="Tree" class="tree"> <!-- Update with your tree GIF path -->
+
+    <!-- Centered Text and Play Button -->
+    <div class="center-content">
+        <h1>The Story of Perseverance</h1>
+        <button class="play-button" onclick="window.location.href='chapter1.html'">Play</button>
+    </div>
+
+    <script>
+        function createGrass() {
+            const grassContainer = document.getElementById('grass');
+            for (let i = 0; i < 500; i++) {
+                let blade = document.createElement('div');
+                blade.classList.add('blade');
+                blade.style.left = `${Math.random() * 100}%`;
+                blade.style.height = `${40 + Math.random() * 30}px`;
+                blade.style.animationDuration = `${1.5 + Math.random()}s`;
+                grassContainer.appendChild(blade);
+            }
+        }
+
+        function createClouds() {
+            for (let i = 0; i < 7; i++) {
+                let cloud = document.createElement('div');
+                cloud.classList.add('cloud');
+                cloud.style.width = `${120 + Math.random() * 180}px`;
+                cloud.style.height = `${60 + Math.random() * 100}px`;
+                cloud.style.top = `${Math.random() * 30 + 10}%`;
+                cloud.style.left = `-${Math.random() * 100}px`;
+                cloud.style.animationDuration = `${25 + Math.random() * 15}s`;
+                document.body.appendChild(cloud);
+            }
+        }
+
+        createGrass();
+        createClouds();
+    </script>
+</body>
+</html>

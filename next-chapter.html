@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 2: The Discovery of the Pot</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #f1c27d; /* Light desert background */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            position: relative;
+            color: #2c3e50;
+            font-family: 'Helvetica Neue', sans-serif;
+        }
+
+        /* Sun - aligned at top right */
+        /* .sun {
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #f39c12, #f1c27d);
+            border-radius: 50%;
+            box-shadow: 0 0 40px rgba(255, 204, 0, 0.7);
+            animation: shine 3s infinite alternate;
+        } */
+
+        @keyframes shine {
+            0% { box-shadow: 0 0 40px rgba(255, 204, 0, 0.7); }
+            100% { box-shadow: 0 0 80px rgba(255, 204, 0, 1); }
+        }
+
+        /* Pot Image */
+        .pot {
+            position: absolute;
+            bottom: 100px;
+            left: 45%;
+            width: 350px;
+            height: auto;
+        }
+
+        /* Desert Ground */
+        .desert-ground {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background: url('desert.png') no-repeat center center; /* Replace with your desert image */
+            background-size: cover;
+            z-index: -1;
+        }
+
+        /* Title */
+        .title {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: #2c3e50;
+            z-index: 10;
+        }
+
+        .title h1 {
+            font-size: 60px;
+            font-weight: bold;
+            margin: 0;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+            letter-spacing: 3px;
+        }
+
+        .description {
+            font-size: 18px;
+            margin-top: 20px;
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.4);
+            color: #7f8c8d;
+        }
+
+        /* Continue Button Styling */
+        .continue-button {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 18px 35px;
+            font-size: 22px;
+            background: linear-gradient(45deg, #e67e22, #d35400);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            letter-spacing: 2px;
+        }
+
+        .continue-button:hover {
+            transform: scale(1.1);
+            background: linear-gradient(45deg, #d35400, #e67e22);
+        }
+
+        .continue-button:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sun - aligned at top right -->
+    <div class="sun"></div>
+
+    <!-- Pot Image -->
+    <img src="pot.png" alt="Pot" class="pot"> <!-- Replace with your pot image -->
+
+    <!-- Desert Ground with Image -->
+    <div class="desert-ground"></div>
+
+    <!-- Title -->
+    <div class="title">
+        <h1>Chapter 2: The Discovery of the Pot</h1>
+        <p class="description">After much searching, the crow finally spots a pot with a little water inside. However, the water level is too low for the crow to reach. The crow tries dipping its beak into the pot but can't get to the water. At first, it feels helpless, but then a glimmer of hope sparks.</p>
+    </div>
+
+    <!-- Continue Button -->
+    <a href="chapter3.html">
+        <button class="continue-button">Continue</button>
+    </a>
+
+</body>
+</html>
